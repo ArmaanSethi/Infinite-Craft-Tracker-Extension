@@ -1,0 +1,32 @@
+{
+  "name": "Infinite Craft Tracker",
+  "description": "Tracks infinite craft combos.",
+  "version": "0.3",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "storage",
+    "action"
+  ],
+  "icons": {
+    "16": "16.png",
+    "48": "48.png",
+    "128": "128.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
