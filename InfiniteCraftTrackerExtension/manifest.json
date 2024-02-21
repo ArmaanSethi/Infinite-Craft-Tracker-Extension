@@ -22,7 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "*://*.neal.fun/*"
       ],
       "js": [
         "content.js"

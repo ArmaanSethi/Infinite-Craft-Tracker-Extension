@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <h1>Infinite Craft Tracker</h1>
-  <script src="popup.js"></script> 
+  <script src="popup.js"></script>
 </head>
+
 <body>
-  <div id="messageArea"></div> </body>
+  <p id="output">If this isn't populating keep trying to create new elements and checking up here lol.</p>
+  <button id="copyButton">Copy to Clipboard</button>
+
+  <script>
+    document.getElementById("copyButton").addEventListener("click", function () {
+      // Get the text content of the output element
+      var variableValue = document.getElementById("output").innerText;
+
+      // Create a temporary input element
+      var tempInput = document.createElement("input");
+      tempInput.setAttribute("value", variableValue);
+      document.body.appendChild(tempInput);
+
+      // Select and copy the text
+      tempInput.select();
+      document.execCommand("copy");
+
+      // Remove the temporary input element
+      document.body.removeChild(tempInput);
+
+      // Alert or log a message to indicate the value has been copied
+      alert("Value copied to clipboard: " + variableValue);
+    });
+  </script>
+</body>
+
 </html>

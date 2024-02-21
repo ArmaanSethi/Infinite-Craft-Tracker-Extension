@@ -31,10 +31,7 @@ function addCombination(element1, element2, result) {
   elementGraph[element1].children.add(result);
   elementGraph[element2].children.add(result);
   console.log(Object.keys(elementGraph[result].parents).length);
-  if (Object.keys(elementGraph[result].parents).length === 0) {
-    console.log("YO SOMETHING MESSED UP");
-  }
-
+  // (TODO) Check that parents length is > 0.
   console.log(elementGraph);
 }
 
@@ -81,14 +78,31 @@ function getLastElementOfLastArray(nestedArray) {
   return nestedArray.flat(Infinity).at(-1);
 }
 
+function convertToCSV(data) {
+  let csv = 'New Element,Element,Element\n';
+  for (const key in data) {
+    const element1 = key;
+    const parents = data[key].parents;
+    for (const parentKey in parents) {
+      const element2 = parentKey;
+      const element3Set = parents[parentKey];
+      element3Set.forEach(element3 => {
+        csv += `${element1},${element2},${element3}\n`;
+      });
+    }
+  }
+  console.log("CSV\n", csv);
+
+  return csv;
+}
+
 async function handleDivChange(mutation) {
   const changedDiv = mutation.target;
   const key = changedDiv.id || changedDiv.className;
   const oldContent = initialDivStates[key] || ''; // Get previous content for better diff
   const newContent = changedDiv.textContent;
-  // console.log("newContent", newContent);
 
-  const diff = improvedDiff(oldContent, newContent);
+  const diff = improvedDiff(newContent);
 
   // Update initial state to ensure next diff is calculated correctly
   initialDivStates[key] = newContent;
@@ -96,14 +110,12 @@ async function handleDivChange(mutation) {
   diff.additions.shift();
   // console.log("current:", diff.additions.length, diff.additions);
   await addDiffToLog(diff.additions, historical_log, mutation); // Ensure logging completes, use await
-  // console.log("history:", historical_log.length, historical_log);
-
+  // Send a message to the background script with the variable value
+  let outputVariable = convertToCSV(elementGraph);
+  chrome.runtime.sendMessage({ action: "sendVariable", variableValue: outputVariable });
 }
 
-function improvedDiff(oldContent, newContent) {
-  // console.log('oldContent:' + oldContent);
-  // console.log('newContent:' + newContent);
-  // const oldWords = oldContent.split(/\s+/);
+function improvedDiff(newContent) {
   const newWords = newContent.split(/\r?\n/);
 
   const diffResult = {
@@ -158,32 +170,3 @@ function arraysEqual(arr1, arr2) {
   }
   return true; // All elements matched
 }
-
-// chrome.browserAction.onClicked.addListener(async (info, tab)  => {
-//   chrome.tabs.sendMessage(tab.id, { message: "get_element_graph" }, function (response) {
-//     if (response) {
-//       const elementGraphString = JSON.stringify(response.elementGraph, null, 2);  // Stringify for readability
-//       displayElementGraph(elementGraphString);
-//     } else {
-//       console.error("Error getting elementGraph");
-//     }
-//   });
-// });
-
-// function displayElementGraph(elementGraphString) {
-//   alert(elementGraphString);
-// }
-
-// Assuming you have a variable to monitor 
-let comboCounter = 0;
-// Update the counter or the variable you want to pass
-
-// When the extension icon is clicked:
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log("contentjs onmessage");
-  if (message.action === 'iconClicked') {
-    // Perform the action you want when the icon is clicked
-    console.log("contentjs CLICKED");
-    chrome.runtime.sendMessage({ from: 'content', variableValue: comboCounter });
-  }
-});

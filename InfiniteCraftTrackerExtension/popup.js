@@ -1,11 +1,9 @@
-console.log("popup.js");
+// popup.js
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("popup.js listener");
-
-    if (message.from === 'content' && message.variableValue) {
-        console.log("popup.js if");
-
-        document.getElementById('messageArea').textContent = message.variableValue;
+// Listen for messages from background script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "updatePopup") {
+        // Update the HTML with the variable value
+        document.getElementById("output").innerText = request.variableValue;
     }
 });

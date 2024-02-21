@@ -1,12 +1,15 @@
-// background.js (or your service worker file)
-console.log("background.js");
-chrome.action.onClicked.addListener(() => {
-    console.log("background.js listen");
-    // Here you can either:
-    // a) Directly perform an action (if possible)
-    // b) Send a message back to your content script to trigger an action there
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        console.log("background.js query");
-        chrome.tabs.sendMessage(tabs[0].id, { action: "iconClicked" });
-    });
+// background.js
+
+chrome.runtime.onInstalled.addListener(() => {
+    // Perform initialization tasks here
+    console.log("Extension initialized.");
+    // You can also set default values or perform other setup tasks here
+});
+
+// Listen for messages from content script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "sendVariable") {
+        // Relay the message to the popup script
+        chrome.runtime.sendMessage({ action: "updatePopup", variableValue: request.variableValue });
+    }
 });
