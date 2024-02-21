@@ -25,7 +25,8 @@ function addCombination(element1, element2, result) {
 
   // Add elements to respective sets
   elementGraph[result].parents[element1].add(element2);
-  elementGraph[result].parents[element2].add(element1);
+  // Add symmetric result to elementGraph
+  // elementGraph[result].parents[element2].add(element1);
 
   // 3. Update 'children' lists
   elementGraph[element1].children.add(result);
