@@ -3,6 +3,8 @@ Infinite Craft Tracker Extension
 
 For the game Infinite Craft: [https://neal.fun/infinite-craft/](https://neal.fun/infinite-craft) 
 
+Currently tracks what you have created in infinite craft and records which two elements you merged to create new elements.
+
 ## Screenshots of Extension
 <img width="650" alt="screenshot1" src="https://github.com/ArmaanSethi/Infinite-Craft-Tracker-Extension/assets/6432185/78796810-c607-4c4c-b9cd-529dd7d11360">
 
@@ -10,8 +12,6 @@ For the game Infinite Craft: [https://neal.fun/infinite-craft/](https://neal.fun
 
 ## Usage
 I have never used javascript or made a chrome extension so it's a WIP.
-
-Currently tracks what you have created in infinite craft and records which two elements you merged to create new elements.
 
 When you click on the extension icon it should populate with a CSV of all of the two elements you merged to create new elements.
 
