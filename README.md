@@ -1,31 +1,34 @@
-# Infinite-Craft-Tracker-Extension
-Infinite Craft Tracker Extension
+# Infinite Craft Tracker Extension
+This Chrome extension helps you track your progress in the game Infinite Craft (https://neal.fun/infinite-craft/).  
+It keeps a record of the element combinations you've used to create new items.
 
-For the game Infinite Craft: [https://neal.fun/infinite-craft/](https://neal.fun/infinite-craft) 
+## Features:
 
-Currently tracks what you have created in infinite craft and records which two elements you merged to create new elements.
+* Tracks element combinations: See which two elements you merged to create each new item.
+* Visualizes progress: Screenshots showcase the intended functionality of displaying your tracked combinations.
+* CSV export: Export your data to a spreadsheet for further analysis.
 
-## Screenshots of Extension
+## Screenshots:
+
+The provided screenshots demonstrate the intended functionality of the extension, including the visualization of tracked combinations and the CSV export option.  
 <img width="650" alt="screenshot1" src="https://github.com/ArmaanSethi/Infinite-Craft-Tracker-Extension/assets/6432185/78796810-c607-4c4c-b9cd-529dd7d11360">
-
 <img width="663" alt="screenshot2" src="https://github.com/ArmaanSethi/Infinite-Craft-Tracker-Extension/assets/6432185/9ba44021-0954-41ef-ace4-ef17a51ef6cd">
 
-## Usage
-I have never used javascript or made a chrome extension so it's a WIP.
+Please note: The extension is still under development, and some features are not yet fully functional.
 
-When you click on the extension icon it should populate with a CSV of all of the two elements you merged to create new elements.
+## Current Status:
 
-Currently also logs the graph/object to the console because clicking on the extension icon is unreliable. 
+The extension is under development and has some known limitations:
 
-Would also like to export as a csv to write to a spreadsheet.
+* Clicking the extension icon (unreliable): Currently, logging information to the console is used as a more reliable method.
+* Copy to clipboard button (buggy): This feature does not function as intended.
 
-Currently the "Copy to Clipboard" button is bugged and it does not copy the expected values.
+## Installation:
 
-## Installation
+Clone the repository: 
+* In Chrome, go to chrome://extensions/ and enable "Developer mode".
+* Click "Load unpacked" and select the cloned repository folder.
 
-To experiment with these samples, please clone this repo and use 'Load Unpacked Extension'.
-Read more on [Development Basics](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
+## Contributing:
 
-## Contributing
-
-If anybody knows javascript better than me and wants to contribute/improve this feel free.
+We welcome contributions from those with JavaScript and Chrome extension development experience. Feel free to fork the repository and submit pull requests with improvements.
